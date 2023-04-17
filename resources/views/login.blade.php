@@ -82,9 +82,9 @@
                         @endif
 
                     </div>
-                    <p class="text-justify p-5 text-xl"><b>PHILGEPS INTEGRATED NOTICES PUBLICATION INTERFACE</b><br><br>
+                    {{-- <p class="text-justify p-5 text-xl"><b>PHILGEPS INTEGRATED NOTICES PUBLICATION INTERFACE</b><br><br>
                         The Integrated Notices Publication Interface (INPI) is temporarily disabled. This means that bid notices and award notices will not be displayed on the website of the agency while the code of the INPI is being updated.
-                    </p>
+                    </p> --}}
                 </div>
                 {{-- Footer Section --}}
                 <div id="Footer" class="bg-green-800 text-slate-50 py-5 px-10">
