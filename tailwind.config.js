@@ -37,7 +37,7 @@ module.exports = {
       },
       minHeight : {
         'home-height' : '39rem',
-
+        'input-height' : '5rem'
       }
     },
   },
