@@ -62,7 +62,7 @@
                     </ul>
                 </header>
                 {{-- Content (Files and Folders) --}}
-                <div class="">
+                <div class="h-home-height">
 
                     {{-- Files and Folders --}}
                     <div class="">
@@ -87,7 +87,7 @@
                     </p>
                 </div>
                 {{-- Footer Section --}}
-                <div id="Footer" class=" bg-green-800 text-slate-50 py-5 px-10">
+                <div id="Footer" class="bg-green-800 text-slate-50 py-5 px-10">
                     <footer class="flex items-center justify-around h-40 fl-md:h-fit fl-md:flex-col fl-md:w-full fl-md:justify-center ">
                         <div class="h-full fl-md:mb-7 px-5">
                             <p class="text-xl fl-md:text-center">About</p>

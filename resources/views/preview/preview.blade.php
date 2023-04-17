@@ -61,12 +61,8 @@
                     </ul>
                 </header>
                 {{-- Content (Files and Folders) --}}
-                <div class="">
-                    <b class="px-10 text-xl">{{ $title }}</b>
-                    <p class="text-justify px-10 pt-5 text-lg">
-                    {{ $description }}
-                    </p>
-                    <br>
+                <div class="h-home-height">
+
                     {{-- Files and Folders --}}
                     <div class="">
 
@@ -83,8 +79,8 @@
                             @endforeach
                             {{-- </ol> --}}
                         @endif
-
-
+                    </div>
+                </div>
                 {{-- Footer Section --}}
                 <div id="Footer" class=" bg-green-800 text-slate-50 py-5 px-10">
                     <footer class="flex items-center justify-around h-40 fl-md:h-fit fl-md:flex-col fl-md:w-full fl-md:justify-center ">
