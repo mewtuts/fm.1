@@ -34,7 +34,10 @@ module.exports = {
       height : {
         'caption-box' : '45.5rem',
         'flf' : '35rem',
+      },
+      minHeight : {
         'home-height' : '39rem',
+
       }
     },
   },
