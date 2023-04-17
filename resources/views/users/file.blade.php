@@ -72,8 +72,8 @@
                     <div class="h-fit mt-2 flex items-center justify-center">
                         <div class="w-full" id="showCreateFolder">
                             <form action="{{ route('storeSubParent') }}" class="px-5 py-10 bg-slate-200 rounded-lg flex items-center flex-col" method="post">@csrf
-                                <span class="pb-10 text-zinc-700 text-2xl">Create Folder</span>
-                                <input class="text-center bg-transparent border-none text-zinc-700" type="text" id="indicatorFolder" value="{{ $title }}" disabled><br>
+                                <span class="text-zinc-700 text-2xl">Create Folder</span>
+                                <input class="h-32 text-center border-8 bg-transparent text-zinc-700" type="text" id="indicatorFolder" value="{{ $title }}" disabled><br>
                                 <input type="text" name="title" placeholder="Folder Name" class="w-full p-3 rounded border-none bg-slate-50">
                                 <input id="parentID_Folder" type="hidden" value="{{ $parentCategoryID }}" name="parent_id" required>
                                 <input type="submit" value="Create Folder" class="w-full p-3 text-lg bg-green-800 hover:bg-green-900 text-slate-50 mt-7 rounded cursor-pointer">

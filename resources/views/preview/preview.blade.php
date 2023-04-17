@@ -61,7 +61,7 @@
                     </ul>
                 </header>
                 {{-- Content (Files and Folders) --}}
-                <div class="h-home-height">
+                <div class="min-h-home-height">
 
                     {{-- Files and Folders --}}
                     <div class="">
