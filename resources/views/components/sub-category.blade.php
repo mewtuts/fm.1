@@ -45,11 +45,11 @@
 
             @switch($file->file_type)
                 @case('url')
-                    <a href="{{ $file->url }}" target="_blank"> {{ $file->alternative_name }} (url)</a>
+                    <a href="{{ $file->url }}" target="_blank"> {{ $file->alternative_name }}</a>
                 @break
 
                 @default
-                    <a href="{{ '/users/viewFile/'.$category->title.'/'.$file->id }}" target="_blank"> {{ $file->alternative_name }} (file)</a>
+                    <a href="{{ '/users/viewFile/'.$category->title.'/'.$file->id }}" target="_blank"> {{ $file->alternative_name }}</a>
             @endswitch
 
         </div>

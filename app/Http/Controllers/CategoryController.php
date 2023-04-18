@@ -36,8 +36,12 @@ class CategoryController extends Controller
 
         }
 
-        if ( in_array("transparency seal", $values) ) {
-            $title = "Transparency Seal";
+        if(!empty($values)){
+            if ( in_array("transparency seal", $values) ) {
+                $title = "Transparency Seal";
+            }else{
+                $title = "";
+            }
         }else{
             $title = "";
         }
