@@ -118,8 +118,35 @@
 
                             @foreach ($recentlyInsertedData as $file)
                                 <div class="px-2 py-3 w-full flex">
-                                    <i class=" pl-2 bi bi-file-earmark-image-fill text-indigo-800"></i>
+                                    @if ($file->file_type == 'jpeg' || $file->file_type == 'jpg' || $file->file_type == 'png' || $file->file_type == 'gif' || $file->file_type == 'tif')
+                {{-- <input class="radioShow" type="radio" id="image" name="id" value="{{ $file->id }}file" required> --}}
+                                        <i class="bi bi-file-earmark-image text-indigo-800 text-xl pr-2"></i>
+
+                                        @elseif ($file->file_type == 'docx')
+                                            {{-- <input class="radioShow" type="radio" id="image" name="id" value="{{ $file->id }}file" required> --}}
+                                            <i class="bi bi-file-earmark-word-fill text-blue-800 text-xl pr-2"></i>
+
+                                        @elseif ($file->file_type == 'xlsx')
+                                            {{-- <input class="radioShow" type="radio" id="image" name="id" value="{{ $file->id }}file" required> --}}
+                                            <i class="bi bi-file-earmark-excel-fill text-green-800 text-xl pr-2"></i>
+
+                                        @elseif ($file->file_type == 'ppt' || $file->file_type == 'pptx')
+                                            {{-- <input class="radioShow" type="radio" id="image" name="id" value="{{ $file->id }}file" required> --}}
+                                            <i class="bi bi-file-earmark-ppt-fill text-orange-800 text-xl pr-2"></i>
+
+                                        @elseif ($file->file_type == 'pdf')
+                                            {{-- <input class="radioShow" type="radio" id="image" name="id" value="{{ $file->id }}file" required> --}}
+                                            <i class="bi bi-file-earmark-pdf-fill text-red-800 text-xl pr-2"></i>
+                                        @else
+                                            {{-- <input class="radioShow" type="radio" name="id" value="{{ $file->id }}file" required> --}}
+                                            <i class="bi bi-file-earmark-fill text-green-800 text-xl pr-2"></i>
+                                    @endif
                                     <p class="ml-2">{{ $file->alternative_name }}</p>
+
+                                    {{-- Old without condition
+                                        <i class=" pl-2 bi bi-file-earmark-image-fill text-indigo-800"></i>
+                                        <p class="ml-2">{{ $file->alternative_name }}</p>
+                                    --}}
                                 </div>
                             @endforeach
 
