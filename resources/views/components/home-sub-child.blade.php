@@ -6,7 +6,7 @@
     @if ($category->parent_id === null)
         <b class="parentClass cursor-pointer">{{ $category->title }}</b>
     @else
-        <b class="parentClass cursor-pointer">{{ $category->title }}</b>
+        <div tabindex="1" class="parentClass cursor-pointer w-full font-semibold p-1 focus:text-slate-50 focus:bg-green-700 focus:rounded">{{ $category->title }}</div>
     @endif
     <!--END Parent Folder-->
 

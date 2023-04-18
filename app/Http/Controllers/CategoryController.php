@@ -29,7 +29,20 @@ class CategoryController extends Controller
             ->get()
             ->toTree();
 
-        return view('login', compact('categories'));
+        foreach($categories as $category){
+
+            $newString = strtolower($category->title);
+            $values = [$newString];
+
+        }
+
+        if ( in_array("transparency seal", $values) ) {
+            $title = "Transparency Seal";
+        }else{
+            $title = "";
+        }
+
+        return view('login', compact('categories', 'title'));
 
     }
 
@@ -185,6 +198,7 @@ class CategoryController extends Controller
 
         $file = new Files();
         $file->category_id = $parent_id;
+        $file->template_id = $template_id;
         $file->alternative_name = $request->alternative_name;
         $file->file_name = $file_name;
         $file->file_type = $file_type;
@@ -224,6 +238,7 @@ class CategoryController extends Controller
         $file->url = $request->url;
         $file->file_type = "url";
         $file->category_id = $parent_id;
+        $file->template_id = $template_id;
         $file->save();
 
         return redirect()->back()->with('success', 'succesfully upload URL');

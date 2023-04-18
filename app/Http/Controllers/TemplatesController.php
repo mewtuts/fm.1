@@ -163,6 +163,44 @@ class TemplatesController extends Controller
     }
 
 
+    // method for replacing parent-id into the duplicated template
+    private function replaceParentID($cid) {
+
+        $category = Category::where('parent_id', $cid)->get();
+
+        // Getting the latest row inside the template table
+        $newCategoryId = Category::latest()->first();
+
+        return $newCategoryId->id;
+
+    }
+
+    private function updateParentID($cid, $tid, $index) {
+
+        $categories = Category::where('parent_id', $cid)
+        ->where('template_id', $tid)
+        ->get();
+
+        $duplicatedCategories = Category::where('template_id', $tid)
+        ->skip($index+1-1)
+        ->take(1)
+        ->first();
+
+        $files = Files::where('template_id', $tid)
+        ->where('category_id', $cid)
+        ->get();
+
+        foreach ($categories as $category) {
+            $category->parent_id = $duplicatedCategories->id;
+            $category->save();
+        }
+
+        foreach ($files as $file) {
+            $file->category_id = $duplicatedCategories->id;
+            $file->save();
+        }
+    }
+
     // method for duplicating template
     public function duplicateTemplate($template_id) {
 
@@ -184,19 +222,25 @@ class TemplatesController extends Controller
 
         // Getting all data having a foreign key of the selected template id
         $categories = Category::where('template_id', $template_id)->get();
+        // $pid = null;
+
         foreach ($categories as $originalCategory) {
 
             $duplicatedModel = new Category();
             $duplicatedModel->user_id = $user_id;
             $duplicatedModel->template_id = $latestRow->id;
             $duplicatedModel->title = $originalCategory->title;
+
+            // $duplicatedModel->parent_id = $pid;
             $duplicatedModel->parent_id = $originalCategory->parent_id;
+
             $duplicatedModel->status = $originalCategory->status;
 
             $duplicatedModel->save();
 
             // Getting the latest row inside the template table
             $newCategoryId = Category::latest()->first();
+            // $pid = $this->replaceParentID($originalCategory->id);
 
             $countFile = Files::where('category_id', $originalCategory->id)->count();
             if ($countFile > 0) {
@@ -204,6 +248,7 @@ class TemplatesController extends Controller
                 $originalDataFile = Files::where('category_id', $originalCategory->id)->get();
                 foreach ($originalDataFile as $file) {
                     $duplicatedFiles = new Files();
+                    $duplicatedFiles->category_id = $originalCategory->id;
                     $duplicatedFiles->template_id = $newCategoryId->template_id;
                     $duplicatedFiles->alternative_name = $file->alternative_name;
                     $duplicatedFiles->file_name = $file->file_name;
@@ -214,6 +259,15 @@ class TemplatesController extends Controller
                     $duplicatedFiles->save();
                 }
             }
+        }
+
+        $latestCategories = Category::where('template_id', $latestRow->id)->get();
+
+        foreach ($categories as $index => $category) {
+
+            $this->updateParentID($category->id, $latestRow->id, $index);
+            // $this->updateCategoryID();
+
         }
 
         $sourceDir = public_path($originalTemplate->title.'_'.$originalTemplate->id);

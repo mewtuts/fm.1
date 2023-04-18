@@ -16,6 +16,7 @@ return new class extends Migration
         Schema::create('files', function (Blueprint $table) {
             $table->increments('id');
             $table->unsignedInteger('category_id');
+            $table->unsignedInteger('template_id');
             $table->string('alternative_name')->nullable();
             $table->string('file_name')->nullable();
             $table->string('file_type')->nullable();
@@ -24,6 +25,7 @@ return new class extends Migration
             $table->text('url')->nullable();
             $table->timestamps();
             $table->foreign('category_id')->references('id')->on('categories')->onDelete('cascade');
+            $table->foreign('template_id')->references('template_id')->on('categories')->onDelete('cascade');
         });
     }
 

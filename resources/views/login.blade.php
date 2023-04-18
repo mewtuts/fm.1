@@ -72,7 +72,6 @@
                         @else
                             {{-- <ol class="list-lower-roman px-6 text-xl mb-10"> --}}
                             @foreach ($categories as $index => $category)
-
                                 <ul class="">
                                     <x-home-sub-category :category="$category" :index="$index" />
                                 </ul>
@@ -80,11 +79,15 @@
                             @endforeach
                             {{-- </ol> --}}
                         @endif
-
                     </div>
-                    {{-- <p class="text-justify p-5 text-xl"><b>PHILGEPS INTEGRATED NOTICES PUBLICATION INTERFACE</b><br><br>
-                        The Integrated Notices Publication Interface (INPI) is temporarily disabled. This means that bid notices and award notices will not be displayed on the website of the agency while the code of the INPI is being updated.
-                    </p> --}}
+
+                        @if (Str::contains('Transparency Seal', $title))
+                            {{-- Transpaency Seal Description Below --}}
+                            <p class="text-justify p-4 text-xl"><b>PHILGEPS INTEGRATED NOTICES PUBLICATION INTERFACE</b><br><br>
+                                The Integrated Notices Publication Interface (INPI) is temporarily disabled. This means that bid notices and award notices will not be displayed on the website of the agency while the code of the INPI is being updated.
+                            </p>
+                        @endif
+
                 </div>
                 {{-- Footer Section --}}
                 <div id="Footer" class="bg-green-800 text-slate-50 py-5 px-10">
