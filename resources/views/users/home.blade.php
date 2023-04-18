@@ -175,7 +175,7 @@
                                     <div class="flex items-end mt-5">
                                          <form action="{{ '/users/editTemplate/'.$template->id }}" method="POST" class="hidden showFolderUpdate"> @csrf
                                             <div>
-                                                <input class="bg-green-800 border-none rounded-tl rounded-bl text-white" type="text" name="title" placeholder="New template name">
+                                                <input class="bg-slate-500 border-none rounded-tl rounded-bl text-white" type="text" name="title" placeholder="New template name">
                                                 <input type="submit" name="submit" value="Go" class="h-10 text-base absoluite cursor-pointer bg-yellow-400 w-10 rounded-tr rounded-br hover:bg-yellow-500">
                                             </div>
                                          </form>
