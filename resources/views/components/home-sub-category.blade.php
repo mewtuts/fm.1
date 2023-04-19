@@ -62,15 +62,14 @@
     <!--END Uploaded files-->
 
     <!--Sub folder-->
-    <ol class="list-roman px-6 text-xl mb-10">
-        @foreach ($category->children as $child)
+        <ol class="list-roman px-6 text-xl mb-10">
+            @foreach ($category->children as $child)
 
-            <div class="">
-                <x-home-sub-child :category="$child" />
-            </div>
-
-        @endforeach
-    </ol>
+                <div class="" tabindex="1">
+                    <x-home-sub-child :category="$child" />
+                </div>
+            @endforeach
+        </ol>
     <!--END Sub folder-->
 
 {{-- </div></li> --}}

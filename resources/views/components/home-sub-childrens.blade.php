@@ -6,7 +6,7 @@
     @if ($category->parent_id === null)
         <b>{{ $category->title }}</b>
     @else
-        <div tabindex="1" class="subParentClass cursor-pointer w-full font-semibold p-1 focus:text-slate-50 focus:bg-green-700 focus:rounded">{{ $category->title }}</div>
+        <div tabindex="1" class="subParentClass cursor-pointer w-full font-semibold p-1 focus:bg-slate-200">{{ $category->title }}</div>
     @endif
     <!--END Parent Folder-->
 

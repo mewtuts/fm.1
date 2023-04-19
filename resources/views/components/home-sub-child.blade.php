@@ -6,7 +6,7 @@
     @if ($category->parent_id === null)
         <b class="parentClass cursor-pointer">{{ $category->title }}</b>
     @else
-        <div tabindex="1" class="parentClass cursor-pointer w-full font-semibold p-1 focus:text-slate-50 focus:bg-green-700 focus:rounded">{{ $category->title }}</div>
+        <div tabindex="1" class="parentClass cursor-pointer w-full font-semibold p-1">{{ $category->title }}</div>
     @endif
     <!--END Parent Folder-->
 
@@ -43,27 +43,52 @@
  <!--END Uploaded files-->
 
  <!--Sub folder-->
- <ol class="list-upper-alpha px-6 text-xl mb-10">
+    <ol class="letterClass list-upper-alpha px-10 text-xl mb-10 hidden">
 
-    @foreach ($category->children as $child)
+        @foreach ($category->children as $child)
 
-        <div class="">
-            <x-home-sub-childrens :category="$child" />
-        </div>
+            <div class="">
+                <x-home-sub-childrens :category="$child" />
+            </div>
 
-    @endforeach
+        @endforeach
 
-</ol>
+    </ol>
 <!--END Sub folder-->
 
 
 </div></li>
 <script>
+    // Parent Folder to sub folders
+    $(document).ready(function(){
+        $(".parentClass").each(function(){
+            $(this).on("click", function(){
+                $(this).siblings(".letterClass").toggle();
+            })
+        })
+    });
+
+    $(document).ready(function(){
+        $(".parentClass").each(function(){
+            $(this).on("click", function(){
+                $(".letterClass").css("background-color", "#e2e8f0");
+            })
+        })
+    });
+
     // Main  Folder to siblings
     $(document).ready(function(){
         $(".parentClass").each(function(){
             $(this).on("click", function(){
                 $(this).siblings(".parentFiles").toggle();
+            })
+        })
+    });
+
+    $(document).ready(function(){
+        $(".parentClass").each(function(){
+            $(this).on("click", function(){
+                $(".parentFiles").css("background-color", "#e2e8f0");
             })
         })
     });
@@ -76,4 +101,16 @@
             })
         })
     });
+
+    //
+    $(document).ready(function(){
+        $(".parentClass").click(function(){
+
+        });
+    });
+
+    $(".parentClass").click(function() {
+        $(this).css("background-color", "yellow");
+    })
+
 </script>

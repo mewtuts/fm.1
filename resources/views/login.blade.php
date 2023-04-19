@@ -75,7 +75,6 @@
                                 <ul class="">
                                     <x-home-sub-category :category="$category" :index="$index" />
                                 </ul>
-
                             @endforeach
                             {{-- </ol> --}}
                         @endif
