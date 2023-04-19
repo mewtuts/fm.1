@@ -6,7 +6,7 @@
     @if ($category->parent_id === null)
         <b class="parentClass cursor-pointer">{{ $category->title }}</b>
     @else
-        <div tabindex="1" class="parentClass cursor-pointer w-full font-semibold p-1">{{ $category->title }}</div>
+        <div tabindex="1" id="parentClass" class="parentClass cursor-pointer w-full font-semibold p-1">{{ $category->title }}</div>
     @endif
     <!--END Parent Folder-->
 
@@ -103,14 +103,20 @@
     });
 
     //
-    $(document).ready(function(){
-        $(".parentClass").click(function(){
+    // $(document).ready(function(){
+    //     $(".parentClass").click(function(){
+    //         $(".parentClass").toggle();
+    //     });
+    // });
 
+    // $(".parentClass").click(function() {
+    //     $(this).css("background-color", "yellow");
+    // })
+
+    $(document).ready(function() {
+        $(".parentClass").click(function() {
+            $(this).toggleClass("highlight"); // add highlight class on click
         });
     });
-
-    $(".parentClass").click(function() {
-        $(this).css("background-color", "yellow");
-    })
 
 </script>

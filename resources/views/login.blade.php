@@ -43,7 +43,9 @@
           list-style-type: upper-alpha;
           margin-left: 2rem;
         }
-
+        .highlight{
+            background-color: #e2e8f0;
+        }
     </style>
 </head>
 <body>

@@ -1,12 +1,12 @@
 @props(['category'])
 
-<li><div class="mt-6">
+<li><div class="">
 
     <!--Parent Folder-->
     @if ($category->parent_id === null)
         <b>{{ $category->title }}</b>
     @else
-        <div tabindex="1" class="subParentClass cursor-pointer w-full font-semibold p-1 focus:bg-slate-200">{{ $category->title }}</div>
+        <div tabindex="1" class="subParentClass cursor-pointer w-full font-semibold p-1">{{ $category->title }}</div>
     @endif
     <!--END Parent Folder-->
 
