@@ -90,8 +90,8 @@ class TemplatesController extends Controller
         //template field
         $template = Templates::find($template_id);
 
-        $oldName = public_path($template->title);
-        $newName = public_path($request->title);
+        $oldName = public_path($template->title.'_'.$template_id);
+        $newName = public_path($request->title.'_'.$template_id);
 
         if (File::exists($oldName)) {
             File::move($oldName, $newName);
