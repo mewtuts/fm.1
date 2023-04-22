@@ -14,27 +14,54 @@
         .green{
             background-color: #166534;
         }
+        .HomeContentBlur{
+            opacity: 0.2;
+            overflow: hidden;
+        }
+        .blurMeContent{
+            opacity: 0.2;
+        }
     </style>
 </head>
 <body class="font-poppins bg-slate-50 ">
-    <!-- Error Message form -->
-    @if(session()->has('message'))
-    <div class="" id="showErrorMessage">
-        <div class="h-screen w-screen absolute flex justify-center items-center">
-            <div class="">
-                <form action="{{ '/users/continue_delete_template/'.session('template_id') }}" method="post" class="px-5 py-2 rounded bg-slate-200 w-register-box">@csrf
-                    <p class="text-center p-5 text-xl text-zinc-700"><span class="text-red-600">Ooops!</span> {{ session('message') }}</p>
-                    <div class="flex items-center justify-between mt-3">
-                        <div></div>
-                        <div class="">
-                            <input type="submit" name="submit" value="Cancel" class="bg-red-800 cursor-pointer py-3 px-4 text-slate-50 rounded hover:bg-red-900 p-2">
-                            <input type="submit" value="Continue" name="submit" class="text-center cursor-pointer rounded py-3 px-4 bg-green-800 text-slate-50 hover:bg-green-900">
-                        </div>
+
+    {{-- Show Folder Uddate Form --}}
+    <div class="showFolderUpdate hidden">
+        <div class="h-screen w-screen flex absolute justify-center items-center z-20">
+            <form action="{{ '/users/editTemplate/' }}" method="POST" id="update-form" class="w-96 p-5 bg-slate-200 rounded"> @csrf
+                <div>
+                    <span class="w-full border-8 flex items-center justify-center text-2xl text-zinc-700 p-5">
+                        <p class="text-center">Template Name</p>
+                    </span>
+                    <input class="rounded bg-slate-50 border-none text-zinc-600 w-full" type="text" name="title" placeholder="New template name">
+                    <input type="hidden" name="tid" id="template_id">
+                    <div class="mt-5 flex justify-between">
+                        <input type="submit" name="submit" value="Update" class="text-white text-base absoluite cursor-pointer bg-green-800 w-update-t-name rounded hover:bg-green-900">
+                        <input type="button" value="Cancel" id="" class="nameUpdateClose bg-red-800 hover:bg-red-800 p-2 text-white w-update-t-name cursor-pointer rounded">
                     </div>
-                </form>
-            </div>
+                </div>
+            </form>
         </div>
     </div>
+
+    <!-- Error Message form -->
+    @if(session()->has('message'))
+        <div class="" id="showErrorMessage">
+            <div class="h-screen w-screen absolute flex justify-center items-center">
+                <div class="">
+                    <form action="{{ '/users/continue_delete_template/'.session('template_id') }}" method="post" class="px-5 py-2 rounded bg-slate-200 w-register-box">@csrf
+                        <p class="text-center p-5 text-xl text-zinc-700"><span class="text-red-600">Ooops!</span> {{ session('message') }}</p>
+                        <div class="flex items-center justify-between mt-3">
+                            <div></div>
+                            <div class="">
+                                <input type="submit" name="submit" value="Cancel" class="bg-red-800 cursor-pointer py-3 px-4 text-slate-50 rounded hover:bg-red-900 p-2">
+                                <input type="submit" value="Continue" name="submit" class="text-center cursor-pointer rounded py-3 px-4 bg-green-800 text-slate-50 hover:bg-green-900">
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
     @endif
 
     <button data-drawer-target="logo-sidebar" data-drawer-toggle="logo-sidebar" aria-controls="logo-sidebar" type="button" class="inline-flex items-center p-2 mt-2 ml-3 text-sm text-gray-500 rounded-lg md:hidden hover:bg-gray-100 outline-none focus:ring-2 focus:bg-green-800 focus:text-white">
@@ -90,108 +117,109 @@
         </div>
     </aside>
 
-    <!-- Content -->
-    <div class="p-4 sm:ml-80">
-        <div class="p-4 rounded-lg">
-            <h1 class="text-zinc-600 pb-4 ml-2 text-2xl">Parent Folder</h1>
-            <!-- Search Input -->
-            <!-- <div class="grid grid-cols-1 mb-4">
-                <input type="search" placeholder="Search template" class="rounded focus:outline-green-800 outline-none">
-            </div> -->
-            <!-- Templates -->
-            <div class="grid xl:grid-cols-3 lg:grid-cols-2 md:grid-cols-1 gap-5 mb-4">
-                @if ($templates->isEmpty())
-                    <!-- Condition when no template has been created -->
-                    <div class=" ml-2 absolute text-center">
-                        <h1 class="text-3xl text-zinc-600">No Template Created</h1>
-                    </div>
-                    <!-- Content when template have created -->
-                @else
-                    @foreach ($templates as $template)
-                        @if (Session::get('user_id') == $template->user_id)
-                            @if ( $template->status == 0 )
-                                {{-- dito iyong default color --}}
-                                <div id="sample" class="flex items-center justify-center flex-col shadow h-fit rounded-xl tex-white bg-slate-100 border-2 border-slate-200">
-                            @else
-                                {{-- dito iyong activated color --}}
-                                <div id="sample" class="green flex items-center justify-center flex-col shadow h-fit rounded-xl text-white bg-slate-100 border-2 border-slate-200">
+    <!-- Parent Folder / Main Content-->
+    <div class="blurMe" id="border-8">
+        <div class="p-4 sm:ml-80">
+            <div class="p-4 rounded-lg">
+                <h1 class="text-zinc-600 pb-4 ml-2 text-2xl">Parent Folder</h1>
+                <!-- Search Input -->
+                <!-- <div class="grid grid-cols-1 mb-4">
+                    <input type="search" placeholder="Search template" class="rounded focus:outline-green-800 outline-none">
+                </div> -->
+                <!-- Templates -->
+                <div class="grid xl:grid-cols-3 lg:grid-cols-2 md:grid-cols-1 gap-5 mb-4">
+                    @if ($templates->isEmpty())
+                        <!-- Condition when no template has been created -->
+                        <div class=" ml-2 absolute text-center">
+                            <h1 class="text-3xl text-zinc-600">No Template Created</h1>
+                        </div>
+                        <!-- Content when template have created -->
+                    @else
+                        @foreach ($templates as $template)
+                            @if (Session::get('user_id') == $template->user_id)
+                                @if ( $template->status == 0 )
+                                    {{-- dito iyong default color --}}
+                                    <div id="sample" class="flex items-center justify-center flex-col shadow h-fit rounded-xl tex-white bg-slate-100 border-2 border-slate-200">
+                                @else
+                                    {{-- dito iyong activated color --}}
+                                    <div id="sample" class="green flex items-center justify-center flex-col shadow h-fit rounded-xl text-white bg-slate-100 border-2 border-slate-200">
+                                @endif
+                                    <div class="w-full p-5 flex justify-between">
+                                        <div>
+                                            <!-- View Folder -->
+                                            <a href="{{ '/users/file/'.$template->id }}" class="cursor-pointer bg-blue-500 px-3 py-2 hover:bg-blue-600 text-white rounded-lg mr-2"><i class="bi bi-arrow-right"></i></a>
+                                        </div>
+                                        <div>
+                                            {{-- Preview --}}
+                                            <a href="{{ '/users/preview/'.$template->id }}" class="cursor-pointer bg-indigo-500 py-2 px-1 hover:bg-indigo-600 rounded-lg mr-1" target="_blank"><i class="bi bi-eye-fill text-slate-100 p-2"></i></a>
+
+                                            {{-- Duplication --}}
+                                            <a href="{{ '/users/duplicate/'.$template->id }}" class="cursor-pointer bg-orange-500 py-2 px-1 hover:bg-orange-600 rounded-lg mr-1"><i class="bi bi-back text-slate-100 p-2"></i></a>
+
+                                            <!--Edit icon-->
+                                            <a href="#{{ $template->id }}" id="update-icon" onclick="updateTitle()" class="nameUpdate cursor-pointer bg-yellow-400 py-2 px-1 hover:bg-yellow-500 rounded-lg mr-1"><i class="bi bi-pencil-fill text-slate-100 p-2 _{{ $template->id }}"></i></a>
+                                            <!--Delete icon-->
+                                            <a href="{{ '/users/delete_template/'.$template->id }}" class="cursor-pointer bg-red-500 py-2 px-1 hover:bg-red-600 rounded-lg"><i class="bi bi-trash3-fill text-slate-100 p-2"></i></a>
+                                        </div>
+                                    </div>
+
+                                    <div class=" flex justify-end items-center w-full mt-2">
+                                        <span class="mr-3 text-base font-medium">Set as active</span>
+                                        <label class="relative inline-flex items-center mr-5 cursor-pointer">
+
+                                                @if ( $template->status == 0 )
+                                                {{-- Naka off --}}
+                                                    <input type="checkbox" value="Enable{{$template->id}}" class="sr-only peer" id="checkbox" onchange='javascript:handleToggle(this)'>
+                                                @else
+                                                {{-- naka on --}}
+                                                    <input type="checkbox" value="Disable{{$template->id}}" class="sr-only peer" id="checkbox" onchange='javascript:handleToggle(this)' checked>
+                                                @endif
+
+                                            <script>
+                                            function handleToggle(elm){
+                                                if(elm.value.includes('Enable')==true){
+                                                    const newStr = elm.value.replace('Enable', '');
+                                                    console.log(newStr);
+                                                    location.href = "{{ route('changeStatus', ['template_id' => ':newStr']) }}".replace(':newStr', newStr);
+                                                }
+                                                if(elm.value.includes('Disable')==true){
+                                                    const newStr = elm.value.replace('Disable', '');
+                                                    console.log(newStr);
+                                                    location.href = "{{ route('changeStatus', ['template_id' => ':newStr']) }}".replace(':newStr', newStr);
+                                                }
+                                            }
+                                            </script>
+
+                                            <div class="w-11 h-6 bg-gray-200 rounded-full peer dark:bg-gray-700 peer-focus:ring-4 peer-focus:ring-green-300 dark:peer-focus:ring-green-800 peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-0.5 after:left-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all dark:border-gray-600 peer-checked:bg-green-800"></div>
+                                        </label>
+                                    </div>
+                                    </form>
+                                        <p class="text-5xl mt-8 text-orange-300">
+                                            <i class="bi bi-folder-fill"></i>
+                                        </p>
+
+                                        <p class="text-2xl text-center mb-5">
+                                            {{ $template->title }}
+                                        </p>
+                                        <!-- Template Description -->
+                                        <div class="px-5 h-28 border-2 border-transparent overflow-hidden mb-2">
+                                            <p class="text-center text-lg">{{ $template->descriptions }}</p>
+                                        </div>
+                                    </div>
                             @endif
-                                <div class="w-full p-5 flex justify-between">
-                                    <div>
-                                        <!-- View Folder -->
-                                        <a href="{{ '/users/file/'.$template->id }}" class="cursor-pointer bg-blue-500 px-3 py-2 hover:bg-blue-600 text-white rounded-lg mr-2"><i class="bi bi-arrow-right"></i></a>
-                                    </div>
-                                    <div>
-                                        {{-- Preview --}}
-                                        <a href="{{ '/users/preview/'.$template->id }}" class="cursor-pointer bg-indigo-500 py-2 px-1 hover:bg-indigo-600 rounded-lg mr-1" target="_blank"><i class="bi bi-eye-fill text-slate-100 p-2"></i></a>
-
-                                        {{-- Duplication --}}
-                                        <a href="{{ '/users/duplicate/'.$template->id }}" class="cursor-pointer bg-orange-500 py-2 px-1 hover:bg-orange-600 rounded-lg mr-1"><i class="bi bi-back text-slate-100 p-2"></i></a>
-
-                                        <!--Edit icon-->
-                                        <a href="#edit" class="nameUpdate cursor-pointer bg-yellow-400 py-2 px-1 hover:bg-yellow-500 rounded-lg mr-1"><i class="bi bi-pencil-fill text-slate-100 p-2"></i></a>
-
-                                        <!--Delete icon-->
-                                        <a href="{{ '/users/delete_template/'.$template->id }}" class="cursor-pointer bg-red-500 py-2 px-1 hover:bg-red-600 rounded-lg"><i class="bi bi-trash3-fill text-slate-100 p-2"></i></a>
-                                    </div>
-                                </div>
-
-                                <div class=" flex justify-end items-center w-full mt-2">
-                                    <span class="mr-3 text-base font-medium">Set as active</span>
-                                    <label class="relative inline-flex items-center mr-5 cursor-pointer">
-
-                                            @if ( $template->status == 0 )
-                                            {{-- Naka off --}}
-                                                <input type="checkbox" value="Enable{{$template->id}}" class="sr-only peer" id="checkbox" onchange='javascript:handleToggle(this)'>
-                                            @else
-                                            {{-- naka on --}}
-                                                <input type="checkbox" value="Disable{{$template->id}}" class="sr-only peer" id="checkbox" onchange='javascript:handleToggle(this)' checked>
-                                            @endif
-
-                                        <script>
-                                        function handleToggle(elm){
-                                            if(elm.value.includes('Enable')==true){
-                                                const newStr = elm.value.replace('Enable', '');
-                                                console.log(newStr);
-                                                location.href = "{{ route('changeStatus', ['template_id' => ':newStr']) }}".replace(':newStr', newStr);
-                                            }
-                                            if(elm.value.includes('Disable')==true){
-                                                const newStr = elm.value.replace('Disable', '');
-                                                console.log(newStr);
-                                                location.href = "{{ route('changeStatus', ['template_id' => ':newStr']) }}".replace(':newStr', newStr);
-                                            }
-                                        }
-                                        </script>
-
-                                        <div class="w-11 h-6 bg-gray-200 rounded-full peer dark:bg-gray-700 peer-focus:ring-4 peer-focus:ring-green-300 dark:peer-focus:ring-green-800 peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-0.5 after:left-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all dark:border-gray-600 peer-checked:bg-green-800"></div>
-                                    </label>
-                                </div>
-                                </form>
-                                    <p class="text-5xl mt-8 text-orange-300">
-                                        <i class="bi bi-folder-fill"></i>
-                                    </p>
-
-                                    <!-- Update New Name -->
-                                    <div class="flex items-end mt-5">
-                                         <form action="{{ '/users/editTemplate/'.$template->id }}" method="POST" class="hidden showFolderUpdate"> @csrf
-                                            <div>
-                                                <input class="bg-slate-500 border-none rounded-tl rounded-bl text-white" type="text" name="title" placeholder="New template name">
-                                                <input type="submit" name="submit" value="Go" class="h-10 text-base absoluite cursor-pointer bg-yellow-400 w-10 rounded-tr rounded-br hover:bg-yellow-500">
-                                            </div>
-                                         </form>
-                                    </div>
-
-                                    <p class="text-2xl text-center mb-5">
-                                        {{ $template->title }}
-                                    </p>
-                                    <!-- Template Description -->
-                                    <div class="px-5 h-28 border-2 border-transparent overflow-hidden mb-2">
-                                        <p class="text-center text-lg">{{ $template->descriptions }}</p>
-                                    </div>
-                                </div>
-                        @endif
-                    @endforeach
-                @endif
+                        @endforeach
+                    @endif
+                    <!-- Update New Name -->
+                    {{-- <div class="flex items-end mt-5 visible">
+                        <form action="{{ '/users/editTemplate/' }}" method="POST" id="update-form" class="p-5 bg-slate-300 rounded showFolderUpdate"> @csrf
+                        <div>
+                            <input class="bg-green-800 border-none rounded-tl rounded-bl text-white" type="text" name="title" placeholder="New template name">
+                            <input type="hidden" name="tid" id="template_id">
+                            <input type="submit" name="submit" value="Go" class="h-10 text-base absoluite cursor-pointer bg-yellow-400 w-10 rounded-tr rounded-br hover:bg-yellow-500">
+                        </div>
+                        </form>
+                </div> --}}
+                </div>
             </div>
         </div>
     </div>
@@ -215,11 +243,47 @@
 
         // Toggle for updating the name of the folder
         $(document).ready(function(){
-            $(".nameUpdate").click(function(){
-                $(".showFolderUpdate").toggle();
+            $(".nameUpdate").dblclick(function(){
+                $(".showFolderUpdate").show()
             })
-        });
 
+            //Blur the background
+            $(".nameUpdate").dblclick(function(){
+                $(".blurMe").addClass("blurMeContent");
+            });
+        })
+
+        $(document).ready(function(){
+            $(".nameUpdateClose").click(function(){
+                $(".showFolderUpdate").hide()
+            })
+
+            //Remove blur the background
+            $(".nameUpdateClose").click(function(){
+                $(".blurMe").removeClass("blurMeContent");
+            });
+        })
+        // $(document).ready(function(){
+        //     $(".nameUpdate").dblclick(function(){
+        //         $(".showFolderUpdate").toggle();
+        //     })
+        // });
+
+        // Toggle for updating the title template
+        function updateTitle(){
+            // getting the href content and removing its '#' symbol.
+            var aid = document.querySelectorAll('.nameUpdate');
+            // getting the action attribute inside form tag and removing alpha and special character string to get the ID.
+            for (var i = 0; i < aid.length; i++) {
+
+                aid[i].addEventListener('click', function(event) {
+                    var aTag1 = event.target;
+                    var attributeValue = aTag1.getAttribute('class').split('_')[1];
+                    var parentID_Folder = document.getElementById("template_id");
+                    parentID_Folder.value = attributeValue;
+                });
+            }
+        }
 
         // Set active background
         // const btn = document.querySelector('#checkbox')

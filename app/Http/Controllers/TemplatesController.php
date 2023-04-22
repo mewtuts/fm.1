@@ -86,12 +86,13 @@ class TemplatesController extends Controller
     }
 
     //method for editing template title
-    public function editTemplate(Request $request, $template_id){
+    public function editTemplate(Request $request){
+        // dd($request->tid);
         //template field
-        $template = Templates::find($template_id);
+        $template = Templates::find($request->tid);
 
-        $oldName = public_path($template->title.'_'.$template_id);
-        $newName = public_path($request->title.'_'.$template_id);
+        $oldName = public_path($template->title.'_'.$request->tid);
+        $newName = public_path($request->title.'_'.$request->tid);
 
         if (File::exists($oldName)) {
             File::move($oldName, $newName);
@@ -102,7 +103,7 @@ class TemplatesController extends Controller
             //category field
             $category_id = Category::select('id')
             ->where('parent_id', null)
-            ->where('template_id', $template_id)->first();
+            ->where('template_id', $request->tid)->first();
 
             $category = Category::find($category_id->id);
 

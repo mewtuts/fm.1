@@ -30,6 +30,7 @@ module.exports = {
       },
       width : {
         'register-box' : '32rem',
+        'update-t-name' : '47%',
       },
       height : {
         'caption-box' : '45.5rem',

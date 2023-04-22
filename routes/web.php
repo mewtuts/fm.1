@@ -60,7 +60,7 @@ Route::controller(TemplatesController::class)->group(function () {
     Route::post('/users/addTemplate', 'addTemplate');
 
     //route for updating template title
-    Route::post('/users/editTemplate/{template_id}', 'editTemplate');
+    Route::post('/users/editTemplate/', 'editTemplate');
 
     //route for delete template
     Route::get('/users/delete_template/{template_id}', 'delete_template');
