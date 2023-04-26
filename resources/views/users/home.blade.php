@@ -45,8 +45,25 @@
     </div>
 
     <!-- Error Message form -->
+    {{-- @if(session()->has('message'))
+        <div class="showErrorMessage hidden">
+            <div class="h-screen w-screen absolute flex justify-center items-center z-20">
+                <form  action="{{ '/users/continue_delete_template/'.session('template_id') }}" method="post" class="px-5 py-2 rounded bg-slate-200 w-register-box">@csrf
+                    <p class="text-center p-5 text-xl text-zinc-700"><span class="text-red-600">Ooops!</span> {{ session('message') }}</p>
+                    <div class="flex items-center justify-between mt-3">
+                        <div></div>
+                        <div class="">
+                            <input type="button" name="submit" value="Cancel" class="closeErrorMessage bg-red-800 cursor-pointer py-3 px-4 text-slate-50 rounded hover:bg-red-900 p-2">
+                            <input type="submit" value="Continue" name="submit" class="text-center cursor-pointer rounded py-3 px-4 bg-green-800 text-slate-50 hover:bg-green-900">
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+    @endif --}}
+
     @if(session()->has('message'))
-        <div class="" id="showErrorMessage">
+        <div class="showErrorMessage">
             <div class="h-screen w-screen absolute flex justify-center items-center">
                 <div class="">
                     <form action="{{ '/users/continue_delete_template/'.session('template_id') }}" method="post" class="px-5 py-2 rounded bg-slate-200 w-register-box">@csrf
@@ -54,7 +71,7 @@
                         <div class="flex items-center justify-between mt-3">
                             <div></div>
                             <div class="">
-                                <input type="submit" name="submit" value="Cancel" class="bg-red-800 cursor-pointer py-3 px-4 text-slate-50 rounded hover:bg-red-900 p-2">
+                                <input type="submit" name="submit" value="Cancel" class="closeErrorMessage bg-red-800 cursor-pointer py-3 px-4 text-slate-50 rounded hover:bg-red-900 p-2">
                                 <input type="submit" value="Continue" name="submit" class="text-center cursor-pointer rounded py-3 px-4 bg-green-800 text-slate-50 hover:bg-green-900">
                             </div>
                         </div>
@@ -164,7 +181,7 @@
                                                 <div class="tooltip-arrow" data-popper-arrow></div>
                                             </div>
                                             <!--Delete icon-->
-                                            <a href="{{ '/users/delete_template/'.$template->id }}" class="cursor-pointer bg-red-500 py-2 px-1 hover:bg-red-600 rounded-lg"><i class="bi bi-trash3-fill text-slate-100 p-2"></i></a>
+                                            <a href="{{ '/users/delete_template/'.$template->id }}" class="buttonErrorMessage cursor-pointer bg-red-500 py-2 px-1 hover:bg-red-600 rounded-lg"><i class="bi bi-trash3-fill text-slate-100 p-2"></i></a>
                                         </div>
                                     </div>
 
@@ -268,11 +285,30 @@
                 $(".blurMe").removeClass("blurMeContent");
             });
         })
-        // $(document).ready(function(){
-        //     $(".nameUpdate").dblclick(function(){
-        //         $(".showFolderUpdate").toggle();
-        //     })
-        // });
+
+        // Display Error Message for deleting template
+        $(document).ready(function(){
+            $(".buttonErrorMessage").click(function(){
+                $(".showErrorMessage").show()
+            })
+
+            // Blur the background
+            $(".buttonErrorMessage").click(function(){
+                $(".blurMe").addClass("blurMeContent");
+            });
+        })
+
+        $(document).ready(function(){
+            $(".closeErrorMessage").click(function(){
+                $(".showErrorMessage").hide()
+            })
+
+            //Remove blur the background
+            $(".closeErrorMessage").click(function(){
+                $(".blurMe").removeClass("blurMeContent");
+            });
+        })
+
 
         // Toggle for updating the title template
         function updateTitle(){

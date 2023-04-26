@@ -53,7 +53,7 @@ class TemplatesController extends Controller
 
     //method for deleting template
     public function delete_template(Request $request, $template_id){
-
+        // dd($template_id);
         $category = Category::where('template_id', $template_id)->count();
 
         if ( $category >= 0 ) {

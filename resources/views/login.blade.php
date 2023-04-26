@@ -66,11 +66,13 @@
                 {{-- Content (Files and Folders) --}}
                 <div class="min-h-home-height">
 
+                    {{-- <span class=" pl-10 text-3xl text-zinc-700">There is no active template</span> --}}
+
                     {{-- Files and Folders --}}
                     <div class="">
-
                         @if (!isset($categories))
-
+                        @elseif ($title == null)
+                            <span class=" pl-10 text-3xl text-zinc-700">There is no active template</span>
                         @else
                             {{-- <ol class="list-lower-roman px-6 text-xl mb-10"> --}}
                             @foreach ($categories as $index => $category)
