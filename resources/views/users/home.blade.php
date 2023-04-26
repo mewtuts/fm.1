@@ -157,7 +157,12 @@
                                             <a href="{{ '/users/duplicate/'.$template->id }}" class="cursor-pointer bg-orange-500 py-2 px-1 hover:bg-orange-600 rounded-lg mr-1"><i class="bi bi-back text-slate-100 p-2"></i></a>
 
                                             <!--Edit icon-->
-                                            <a href="#{{ $template->id }}" id="update-icon" onclick="updateTitle()" class="nameUpdate cursor-pointer bg-yellow-400 py-2 px-1 hover:bg-yellow-500 rounded-lg mr-1"><i class="bi bi-pencil-fill text-slate-100 p-2 _{{ $template->id }}"></i></a>
+                                            <a href="#{{ $template->id }}" id="update-icon" onclick="updateTitle()" data-tooltip-target="tooltip-default" class="nameUpdate cursor-pointer bg-yellow-400 py-2 px-1 hover:bg-yellow-500 rounded-lg mr-1"><i class="bi bi-pencil-fill text-slate-100 p-2 _{{ $template->id }}"></i></a>
+                                            <div id="tooltip-default" role="tooltip" class="absolute z-10 invisible inline-block px-3 py-2 text-sm font-medium text-white transition-opacity duration-300 bg-gray-700 rounded-lg shadow-sm opacity-0 tooltip">
+                                                <p>TAKE NOTE! <br> <p class="text-justify">Please double click the pencil button <br> to edit the template name and click
+                                                    <br> once the cancel button to close the form</p></p>
+                                                <div class="tooltip-arrow" data-popper-arrow></div>
+                                            </div>
                                             <!--Delete icon-->
                                             <a href="{{ '/users/delete_template/'.$template->id }}" class="cursor-pointer bg-red-500 py-2 px-1 hover:bg-red-600 rounded-lg"><i class="bi bi-trash3-fill text-slate-100 p-2"></i></a>
                                         </div>
