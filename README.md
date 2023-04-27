@@ -2,7 +2,7 @@ HOW TO RUN THE SYSTEM
 
 Just follow the instructions below:
 
-1. Install XAMPP, node.js, Composer and any kind of code editor platform on your computer/device. "Visual Studio Code" is most recommended.
+1. Install Git, XAMPP, node.js, Composer and any kind of code editor platform on your computer/device. "Visual Studio Code" is most recommended.
 
 2. Open your code editor, to create a new directory to hold system files. 
   
