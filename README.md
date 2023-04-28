@@ -25,9 +25,29 @@
         2.8. npm run dev (take note, after you run this command open a new terminal and run again step #2.2)
 
         2.9. php artisan serve (take note, after running this command, copy only the given localhost and paste it in your browser.)
-  
-  ### THAT'S IT!. :)
  
  ## METHOD 2
+ 
+ 1. Download the Zip File and extract it in your directories.
+ 
+ 2. Right click the unzip file and click the "Git Bash Here"
+ 
+ 3. Run all the commands below :
+ 
+        3.1. composer update
+        
+        3.2. npm update
+        
+        3.3. cp .env.example .env
+        
+        3.6. php artisan key:generate
+
+        3.7. php artisan migrate (take note, if you see a yes/no in your terminal, just enter "yes" to create your system database. if the database already exists in your database run the "php artisan migrate:reset" first, before you run the "php artisan migrate".)
+
+        3.8. npm run dev (take note, after you run this command open a new terminal and run again step #2.2)
+
+        3.9. php artisan serve (take note, after running this command, copy only the given localhost and paste it in your browser.)
+        
+   ### THAT'S IT!. :)
  
  
