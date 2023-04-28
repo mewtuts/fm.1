@@ -28,7 +28,7 @@
  
  ## METHOD 2
  
- 1. Download the Zip File and extract it in your directories.
+ 1. Download ZIP and extract it in your directories.
  
  2. Right click the unzip file and click the "Git Bash Here"
  
