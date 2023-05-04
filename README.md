@@ -71,6 +71,8 @@ The Laravel framework is open-sourced software licensed under the [MIT license](
     -> npm update
     -> cp .env.example .env
     -> php artisan key:generate
-    -> php artisan migrate:reset
-    -> php artisan migrate
+
+    !escape these following method to not reset the data in yout database
+        -> php artisan migrate:reset
+        -> php artisan migrate
 
