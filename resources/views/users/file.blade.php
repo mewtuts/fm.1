@@ -206,7 +206,7 @@
                                 <label for="update" id="buttonEditNameFile"><i class="bi bi-pencil-fill w-full text-zinc-700 mr-2 cursor-pointer text-xl hover:text-2xl"></i></label>
                                 {{-- <input class="border-2 border-black p-2 cursor-pointer hidden" type="submit" name="submit" value="update" id="update"> --}}
                                 <!-- Delete -->
-                                <label for="delete"><i class="bi bi-trash-fill w-full text-zinc-700 cursor-pointer text-xl hover:text-2xl"></i></label>
+                                {{-- <label for="delete"><i class="bi bi-trash-fill w-full text-zinc-700 cursor-pointer text-xl hover:text-2xl"></i></label> --}}
                                 <input class="border-2 border-black p-2 cursor-pointer hidden" type="submit" name="submit" value="delete" id="delete" >
                             </div>
                         </div>

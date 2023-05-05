@@ -181,7 +181,7 @@
                                                 <div class="tooltip-arrow" data-popper-arrow></div>
                                             </div>
                                             <!--Delete icon-->
-                                            <a href="{{ '/users/delete_template/'.$template->id }}" class="buttonErrorMessage cursor-pointer bg-red-500 py-2 px-1 hover:bg-red-600 rounded-lg"><i class="bi bi-trash3-fill text-slate-100 p-2"></i></a>
+                                            {{-- <a href="{{ '/users/delete_template/'.$template->id }}" class="buttonErrorMessage cursor-pointer bg-red-500 py-2 px-1 hover:bg-red-600 rounded-lg"><i class="bi bi-trash3-fill text-slate-100 p-2"></i></a> --}}
                                         </div>
                                     </div>
 
